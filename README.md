@@ -1,20 +1,44 @@
 # Relay
 
-Relay <> FoF Activity Kit design project.
+Relay <> Friends of Figma activity kit: take a static Relay card and turn it into an interactive element.
 
-## Wallet motion study
+## Run it
 
-A small three.js scene built from the Relay business-debit assets: a black leather wallet and the card.
-Tap the wallet and the card tumbles in the air, lands flat above the pocket opening and slides in.
-Tap again to take it back out.
+CSS masks don't load over `file://`, so serve the repo instead of opening the HTML directly:
 
-- `index.html` — the whole scene (three.js loaded from cdnjs, no build step)
-- `assets/` — wallet SVG and card renders
-
-Run locally with any static server, for example:
-
-```bash
-python3 -m http.server 8090
+```sh
+python3 -m http.server 8000
+# → http://localhost:8000/prototype/
 ```
 
-then open http://localhost:8090.
+## Design system
+
+Pulled from the Figma file "Relay <> FoF Activity Kit (Copy) (Copy)", page **01 - START HERE**.
+
+| Path | What's in it |
+| --- | --- |
+| `tokens/tokens.css` | Colour, type, space, radius and shadow tokens (names mirror the Figma variables) |
+| `components/card.css` | Card in four states: `.card--front`, `--back`, `--cancelled`, `--frozen` |
+| `components/wallet.css` + `wallet.js` | Leather wallet in six colours: tan, brown, green, navy, plum, black |
+| `assets/figma/` | Exported SVG/PNG layers for the cards, wallets and icons |
+| `prototype/index.html` | Gallery of every component, the starting point for experiments |
+| `prototype/demos/card-drop.js` + `assets/wallet.svg`, `assets/card-*.png` | three.js card-drop demo: tap the wallet and the card tumbles in and slides into the pocket (also served standalone from `index.html` at the repo root) |
+
+**Fonts:** Basis Grotesque Pro and Tobias are licensed and aren't in the repo. Add the files under `assets/fonts/` with `@font-face` rules; until then the tokens fall back to Helvetica/Georgia.
+
+**Frozen card:** the frost layer's blend and blur are approximated (`mix-blend-mode: screen` + `backdrop-filter: blur(2px)`). Figma didn't export the exact values.
+
+## Interaction ideas (from the kit)
+
+| Easy | Medium | Hard |
+| --- | --- | --- |
+| Tilt on hover | Slide out of wallet | Interactive card stack |
+| Flip card | Tap → reveal details | Fanned card stack |
+| Glow on hover | Freeze / unfreeze animation | Card customization interaction |
+| Spin | Card activation | Build your own idea! |
+
+Time: 30 minutes. The goal isn't perfection. Experiment with prompting, iterate, and see how quickly you can go from idea to working interaction.
+
+## Other folders
+
+`research/`, `explorations/`, `specs/` hold notes, sketches and handoff specs.

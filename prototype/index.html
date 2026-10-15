@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relay Activity Kit</title>
+  <link rel="stylesheet" href="../tokens/tokens.css">
+  <link rel="stylesheet" href="../components/card.css">
+  <link rel="stylesheet" href="../components/wallet.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="demos/card-in-wallet.css">
+</head>
+<body>
+  <header class="masthead">
+    <h1>Relay &lt;&gt; Friends of Figma: Activity Kit</h1>
+    <p>Component gallery and interaction experiments.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Prototype views">
+    <button class="tabs__tab" role="tab" id="tab-gallery" aria-controls="panel-gallery" data-tab="gallery">Gallery</button>
+    <button class="tabs__tab" role="tab" id="tab-card-in-wallet" aria-controls="panel-card-in-wallet" data-tab="card-in-wallet">Card in wallet</button>
+  </nav>
+
+  <main class="tabs__panel" role="tabpanel" id="panel-card-in-wallet" aria-labelledby="tab-card-in-wallet" hidden>
+    <div class="stage">
+      <div class="ciw" id="ciw" tabindex="0" role="button" aria-expanded="false" aria-label="Relay card in a brown wallet. Press to take the card out.">
+        <!-- wallet is built by wallet.js; the card is slotted between the wallet's back and its front pocket -->
+        <div class="card card--front ciw__card">
+          <div class="card__face">
+            <div class="card__logo"><img src="../assets/figma/card/relay-logo-lime.svg" alt=""></div>
+            <div class="card__visa"><img src="../assets/figma/card/visa-front.png" alt="Visa"></div>
+            <div class="card__business-debit"><img src="../assets/figma/card/business-debit.svg" alt="Business Debit"></div>
+          </div>
+          <div class="card__content">
+            <div class="card__chip"><img src="../assets/figma/card/chip-front.svg" alt=""></div>
+            <p class="card__last4">•••• 1234</p>
+          </div>
+          <div class="card__frost ciw__frost"><img src="../assets/figma/card/frost-overlay.png" alt=""></div>
+        </div>
+      </div>
+      <p class="stage__hint" aria-live="polite">Hover to peek · click to take the card out</p>
+    </div>
+  </main>
+
+  <main class="tabs__panel" role="tabpanel" id="panel-gallery" aria-labelledby="tab-gallery">
+    <section>
+      <h2>Cards</h2>
+      <div class="gallery">
+        <figure>
+          <div class="card card--front" id="card-front">
+            <div class="card__face">
+              <div class="card__logo"><img src="../assets/figma/card/relay-logo-lime.svg" alt=""></div>
+              <div class="card__visa"><img src="../assets/figma/card/visa-front.png" alt="Visa"></div>
+              <div class="card__business-debit"><img src="../assets/figma/card/business-debit.svg" alt="Business Debit"></div>
+            </div>
+            <div class="card__content">
+              <div class="card__chip"><img src="../assets/figma/card/chip-front.svg" alt=""></div>
+              <p class="card__last4">•••• 1234</p>
+            </div>
+          </div>
+          <figcaption>Front of card</figcaption>
+        </figure>
+
+        <figure>
+          <div class="card card--back" id="card-back">
+            <div class="card__strip"></div>
+            <div class="card__chip"><img src="../assets/figma/card/chip-back.svg" alt=""></div>
+            <div class="card__details">
+              <div class="card__row">
+                <dl class="card__field card__field--number"><dt>Card number</dt><dd>•••• •••• •••• 1234</dd></dl>
+                <button class="icon-button" type="button" aria-label="Show card details"><img src="../assets/figma/icons/eye.svg" alt=""></button>
+              </div>
+              <div class="card__row card__row--meta">
+                <dl class="card__field"><dt>Expiry date</dt><dd>••/••</dd></dl>
+                <dl class="card__field"><dt>CVV</dt><dd>•••</dd></dl>
+              </div>
+            </div>
+          </div>
+          <figcaption>Back of card</figcaption>
+        </figure>
+
+        <figure>
+          <div class="card card--cancelled" id="card-cancelled">
+            <div class="card__half card__half--right">
+              <div class="card__logo"><img src="../assets/figma/card/relay-logo-gray.svg" alt=""></div>
+              <div class="card__visa"><img src="../assets/figma/card/visa-cancelled.png" alt="Visa"></div>
+          <div class="card__bd-glyph" style="bottom:58.35px;right:20.31px;width:4.782px;height:9.655px"><img src="../assets/figma/card/business-debit-cancelled-0.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.47px;right:26.23px;width:2.43px;height:11.039px"><img src="../assets/figma/card/business-debit-cancelled-1.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.24px;right:29.83px;width:8.35px;height:11.07px"><img src="../assets/figma/card/business-debit-cancelled-2.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.24px;right:39.49px;width:7.781px;height:8.225px"><img src="../assets/figma/card/business-debit-cancelled-3.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.47px;right:48.39px;width:8.38px;height:10.839px"><img src="../assets/figma/card/business-debit-cancelled-4.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.24px;right:61.29px;width:4.951px;height:8.225px"><img src="../assets/figma/card/business-debit-cancelled-5.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.24px;right:67.28px;width:4.951px;height:8.225px"><img src="../assets/figma/card/business-debit-cancelled-5.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.24px;right:73.22px;width:7.781px;height:8.225px"><img src="../assets/figma/card/business-debit-cancelled-3.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.47px;right:82.26px;width:6.827px;height:7.995px"><img src="../assets/figma/card/business-debit-cancelled-6.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.47px;right:90.54px;width:2.43px;height:11.039px"><img src="../assets/figma/card/business-debit-cancelled-7.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.24px;right:94.08px;width:4.951px;height:8.225px"><img src="../assets/figma/card/business-debit-cancelled-5.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.24px;right:100.39px;width:6.827px;height:7.995px"><img src="../assets/figma/card/business-debit-cancelled-8.svg" alt=""></div>
+          <div class="card__bd-glyph" style="bottom:58.47px;right:108.51px;width:7.366px;height:10.839px"><img src="../assets/figma/card/business-debit-cancelled-9.svg" alt=""></div>
+            </div>
+            <div class="card__half card__half--left">
+              <div class="card__logo"><img src="../assets/figma/card/relay-logo-gray.svg" alt=""></div>
+              <p class="card__last4">•••• 1234</p>
+              <div class="card__chip"><img src="../assets/figma/card/chip-cancelled.svg" alt=""></div>
+            </div>
+          </div>
+          <figcaption>Cancelled card</figcaption>
+        </figure>
+
+        <figure>
+          <div class="card card--frozen" id="card-frozen">
+            <div class="card__face">
+              <div class="card__logo"><img src="../assets/figma/card/relay-logo-lime.svg" alt=""></div>
+              <div class="card__visa"><img src="../assets/figma/card/visa-front.png" alt="Visa"></div>
+              <div class="card__business-debit"><img src="../assets/figma/card/business-debit.svg" alt="Business Debit"></div>
+            </div>
+            <div class="card__content">
+              <p class="card__last4">••• 1234</p>
+            </div>
+            <div class="card__frost"><img src="../assets/figma/card/frost-overlay.png" alt=""></div>
+          </div>
+          <figcaption>Frozen card</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Wallets</h2>
+      <div class="gallery gallery--wallets" id="wallets"></div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../components/wallet.js"></script>
+  <script src="tabs.js"></script>
+  <script src="demos/card-in-wallet.js"></script>
+  <script>
+    const wallets = document.getElementById("wallets");
+    for (const colour of RelayWallet.COLOURS) {
+      wallets.appendChild(RelayWallet.create(colour, { assetBase: "../assets/figma/wallet" }));
+    }
+  </script>
+</body>
+</html>

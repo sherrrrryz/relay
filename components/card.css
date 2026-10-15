@@ -1,0 +1,176 @@
+/*
+ * Card — Relay Business Debit card (360 × 227)
+ * Figma: Assets slide → "Cards" (node 6:1064)
+ * Variants: .card--front · .card--back · .card--cancelled · .card--frozen
+ */
+.card {
+  position: relative;
+  width: 360px;
+  height: 227px;
+  border-radius: var(--radius-card);
+  font-family: var(--font-basis);
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+.card img { position: absolute; display: block; max-width: none; inset: 0; width: 100%; height: 100%; }
+
+/* Front-face surface (front + frozen share it) */
+.card__face {
+  position: absolute;
+  inset: -2px; /* matches Figma: pattern sits 2px outside so its padding box == the card */
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: inherit;
+  border: 2px solid var(--card-border);
+  background: var(--color-lime-400);
+}
+.card--front,
+.card--frozen { filter: drop-shadow(0 1px 1.5px rgba(120, 113, 89, 0.18)); overflow: hidden; }
+
+/* Layer for chip / last4: Figma positions these inside a 2px-bordered frame */
+.card__content {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+}
+
+/* Big "Relay" script that bleeds off the card */
+.card__logo {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -90.9px;
+  left: -53.8px;
+  width: 468.5px;
+  height: 346px;
+  pointer-events: none;
+}
+.card__logo img {
+  position: static;
+  width: 409.676px;
+  height: 218.131px;
+  flex: none;
+  transform: rotate(-19.37deg) skewX(1.27deg);
+}
+.card__visa {
+  position: absolute;
+  inset: calc(79.74% + 1.19px) calc(6.04% - 1.76px) calc(9.11% - 1.64px) calc(72.1% + 0.88px);
+}
+.card__visa img { object-fit: cover; }
+.card__business-debit {
+  position: absolute;
+  inset: calc(68.5% + 0.74px) calc(6.2% - 1.75px) calc(26.54% - 0.94px) calc(67.26% + 0.69px);
+}
+.card__chip {
+  position: absolute;
+  inset: calc(31.08% - 0.76px) calc(75.87% + 1.03px) calc(48.89% - 0.04px) calc(11.06% - 1.56px);
+}
+.card__chip img { inset: auto; top: 12.5%; left: 0; width: 100%; height: 76.19%; }
+.card__last4 {
+  position: absolute;
+  left: 14px;
+  top: 188px;
+  margin: 0;
+  white-space: nowrap;
+  font: var(--type-number-bold-lg);
+  color: var(--color-text-default);
+}
+
+/* ── Frozen ─────────────────────────────────────────── */
+.card--frozen .card__last4 { font: var(--type-label-lg); }
+.card__frost {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Approximation: Figma composites this layer over a blurred card; exact blend/blur values weren't exported */
+  mix-blend-mode: screen;
+  backdrop-filter: blur(2px);
+}
+
+/* ── Back ───────────────────────────────────────────── */
+.card--back {
+  overflow: hidden;
+  background: var(--color-sand-200);
+  filter:
+    drop-shadow(0 14px 10px rgba(120, 113, 89, 0.14))
+    drop-shadow(0 1px 3px rgba(120, 113, 89, 0.2))
+    drop-shadow(0 8px 6px rgba(120, 113, 89, 0.14));
+}
+.card__strip {
+  position: absolute;
+  inset: 9.16% -0.25% 75.3% 0;
+  background: var(--color-card-strip);
+}
+.card--back .card__chip { inset: 30.68% 11.04% 49.29% 75.88%; }
+.card__details {
+  position: absolute;
+  left: 24px;
+  top: 111px;
+  width: 256px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-200);
+}
+.card__row { display: flex; align-items: flex-end; gap: var(--space-200); }
+.card__row--meta { align-items: center; gap: var(--space-400); }
+.card__field { display: flex; flex-direction: column; gap: 4px; margin: 0; }
+.card__field dt { font: var(--type-body-sm); color: var(--color-text-subtle); }
+.card__field dd { margin: 0; font: var(--type-number-bold-lg); color: var(--color-text-default); }
+.card__field--number dd { font: var(--type-number-bold-xl); }
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--shape-radius-100);
+  background: none;
+  cursor: pointer;
+}
+.icon-button img { position: static; width: 18px; height: 18px; }
+
+/* ── Cancelled: card snapped into two tilted halves ── */
+.card__half {
+  position: absolute;
+  box-sizing: border-box;
+  width: 180px;
+  height: 227px;
+  overflow: hidden;
+  border: 2px solid var(--card-border-cancelled);
+  background: var(--color-gray-300);
+  box-shadow:
+    0 14px 20px 0 rgba(120, 113, 89, 0.14),
+    0 1px 6px 0 rgba(120, 113, 89, 0.2),
+    0 8px 12px 0 rgba(120, 113, 89, 0.14);
+}
+.card__half--left {
+  left: 1px;
+  top: 0.5px;
+  border-right: 0;
+  border-radius: var(--radius-card) 0 0 var(--radius-card);
+  transform: rotate(-3deg);
+}
+.card__half--right {
+  left: 181px;
+  top: 15.2px;
+  border-left: 0;
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  transform: rotate(4deg);
+}
+.card__half .card__logo { width: 463.377px; height: 339.977px; top: -89.36px; }
+.card__half--left .card__logo { left: -53.23px; }
+.card__half--right .card__logo { left: auto; right: -54.14px; }
+.card__half--left .card__chip {
+  inset: calc(31.08% - 0.76px) calc(51.73% + 1.03px) calc(48.89% - 0.04px) calc(22.11% - 1.56px);
+}
+.card__half--left .card__last4 { font: var(--type-label-lg); color: var(--color-text-subtle); }
+.card__half--right .card__visa {
+  inset: auto 19.76px 18.68px auto;
+  width: 78.693px;
+  height: 25.323px;
+}
+/* "Business Debit" wordmark, built from individual glyph vectors */
+.card__bd-glyph { position: absolute; }
