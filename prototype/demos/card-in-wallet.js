@@ -2,6 +2,7 @@
 //   hover → the wallet lifts slightly and the card peeks out of the pocket
 //   click → the card slides out, swaps in front of the wallet, and settles facing you; click again to tuck it back
 //   hover the card while it's out → it slowly frosts over like the Frozen card; move off and it thaws
+//   ← / → while it's out → flip the card over to see the back (and back again)
 //   keep hovering once it's fully frozen → it cracks in half (after the Cancelled card); click the pieces to mend it
 (function () {
   const root = document.getElementById("ciw");
@@ -208,9 +209,42 @@
       .to(halves, { ...pose, duration: 0.55, ease: "power3.inOut" })
       .set(card, { visibility: "visible" })
       .to(halves, { opacity: 0, duration: 0.25 });
-    hint.textContent = "Hover the card to freeze it, keep hovering to crack it · click to put it back";
+    hint.textContent = "← → to flip · hover to freeze, keep hovering to crack · click to put it back";
     if (reduceMotion) current.progress(1);
   }
+
+  // ── Flip ────────────────────────────────────────────────
+  // Turn edge-on, swap faces, turn the rest of the way. Splitting at 90° keeps the back face
+  // the right way round without needing true 3D faces (the card's shadow/clipping flatten 3D).
+  let showingBack = false;
+  let flipping = null;
+
+  function flip(dir = 1, onDone) {
+    if (flipping || broken || current || !open) return;
+    const lift = { scale: CARD.front.scale * 1.05, y: CARD.front.y - 12 };
+    flipping = gsap.timeline({
+      onComplete: () => {
+        flipping = null;
+        onDone?.();
+      },
+    })
+      .to(card, { rotationY: -90 * dir, ...lift, duration: 0.28, ease: "power2.in" })
+      .add(() => {
+        showingBack = !showingBack;
+        card.classList.toggle("is-back", showingBack);
+      })
+      .set(card, { rotationY: 90 * dir })
+      .to(card, { rotationY: 0, scale: CARD.front.scale, y: CARD.front.y, duration: 0.5, ease: "back.out(1.4)" });
+    if (reduceMotion) flipping.progress(1);
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (root.closest("[hidden]")) return; // demo tab isn't showing
+    const dir = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+    if (!dir || !open) return;
+    e.preventDefault();
+    flip(dir);
+  });
 
   function activate() {
     if (broken) return mend();
@@ -218,9 +252,12 @@
   }
 
   function toggle() {
+    if (flipping) return;
+    // turn the front back toward us before tucking it away
+    if (open && showingBack) return flip(1, toggle);
     open = !open;
     root.setAttribute("aria-expanded", open);
-    hint.textContent = open ? "Hover the card to freeze it, keep hovering to crack it · click to put it back" : "Hover to peek · click to take the card out";
+    hint.textContent = open ? "← → to flip · hover to freeze, keep hovering to crack · click to put it back" : "Hover to peek · click to take the card out";
     open ? takeOut() : putBack();
   }
 

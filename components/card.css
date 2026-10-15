@@ -130,7 +130,7 @@
   background: none;
   cursor: pointer;
 }
-.icon-button img { position: static; width: 18px; height: 18px; }
+.card .icon-button img { position: static; width: 18px; height: 18px; } /* beats .card img / .wallet img */
 
 /* ── Cancelled: card snapped into two tilted halves ── */
 .card__half {

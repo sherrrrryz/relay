@@ -1,0 +1,8 @@
+{
+  "name": "relay",
+  "private": true,
+  "description": "Relay <> Friends of Figma activity kit: design system and interaction prototypes",
+  "scripts": {
+    "demo": "(sleep 1 && open 'http://localhost:8000/prototype/#card-in-wallet') & python3 -m http.server 8000"
+  }
+}
