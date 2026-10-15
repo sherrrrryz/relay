@@ -11,7 +11,7 @@ python3 -m http.server 8000
 # → http://localhost:8000/prototype/
 ```
 
-The prototype has four tabs: **Gallery**, **Card in wallet** (GSAP), **Card drop (3D)** (three.js) and **Manuela's portfolio**.
+The prototype has four tabs: **Gallery**, **Card in wallet** (GSAP), **Card drop (3D)** (three.js) and **Manula**.
 To rebuild the portfolio tab after editing its source: `cd experiments/manuela-portfolio && npm install && npx vite build --base ./ --outDir ../../prototype/manuela` (then make the four `/textures/` URLs in the bundle relative, as the committed build does).
 
 ## Design system
@@ -26,7 +26,7 @@ Pulled from the Figma file "Relay <> FoF Activity Kit (Copy) (Copy)", page **01 
 | `assets/figma/` | Exported SVG/PNG layers for the cards, wallets and icons |
 | `prototype/index.html` | Gallery of every component, the starting point for experiments |
 | `prototype/demos/card-drop.js` + `assets/wallet.svg`, `assets/card-*.png` | three.js card-drop demo: tap the wallet and the card tumbles in and slides into the pocket (also served standalone from `index.html` at the repo root) |
-| `experiments/manuela-portfolio/` → `prototype/manuela/` | Manuela's portfolio animation, a standalone Vite + three.js app (source → built output); shown in the prototype's fourth tab in a frame |
+| `experiments/manuela-portfolio/` → `prototype/manuela/` | Manuela's portfolio animation, a standalone Vite + three.js app (source → built output); shown in the prototype's **Manula** tab in a frame |
 
 **Fonts:** Basis Grotesque Pro and Tobias are licensed and aren't in the repo. Add the files under `assets/fonts/` with `@font-face` rules; until then the tokens fall back to Helvetica/Georgia.
 
