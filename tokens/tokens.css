@@ -1,13 +1,95 @@
-/* Design tokens — placeholders until pulled from the Figma file */
+/*
+ * Relay <> FoF Activity Kit — design tokens
+ * Source: Figma "Relay <> FoF Activity Kit (Copy) (Copy)", file xCTaXoczidSBnsqiNwmjeY
+ * Names mirror the Figma variable names (e.g. color/Sand/200 → --color-sand-200).
+ */
 :root {
-  --color-bg: #ffffff;
-  --color-text: #1a1a1a;
-  --color-primary: #3b5bdb;
-  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 16px;
-  --space-4: 24px;
-  --space-5: 40px;
-  --radius: 8px;
+  /* ── Colour: primitives ───────────────────────────── */
+  --color-white: #ffffff;
+  --color-gray-black: #000000;
+  --color-gray-300: #dcdbdb;
+  --color-gray-500: #b2afae;
+  --color-sand-200: #f4f1e7;
+  --color-sand-300: #eae6d7;
+  --color-lime-400: #dce798;
+  --color-green-400: #9cceab;
+  --color-green-500: #6ab487;
+  --color-evergreen-400: #a7c9b7;
+
+  /* ── Colour: semantic ─────────────────────────────── */
+  --color-text-default: #25201f;
+  --color-text-subtle: #4d4747;
+  --color-icon-default: #4d4747;
+  --color-icon-subtle: #6d6a69;
+
+  /* ── Colour: activity-kit slide palette ───────────── */
+  --color-forest: #002813;  /* Figma "Color 6" — dark green panels, headings */
+  --color-khaki: #cfc99c;   /* Figma "Color 5" — light panels, display text on forest */
+
+  /* ── Colour: card ─────────────────────────────────── */
+  --color-card-strip: #1a1819;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-border-cancelled: rgba(255, 255, 255, 0.2);
+
+  /* ── Colour: wallet leathers ──────────────────────── */
+  --wallet-tan: #9c5b24;
+  --wallet-brown: #2a1008;
+  --wallet-green: #2a3b2a;
+  --wallet-navy: #23253b;
+  --wallet-plum: #2b0d28;
+  --wallet-black: #17181e;
+
+  /* ── Typography: families ─────────────────────────── */
+  /* Basis Grotesque Pro and Tobias are licensed fonts — drop the files in
+     assets/fonts/ and add @font-face rules; the fallbacks keep things usable. */
+  --font-basis: "Basis Grotesque Pro", "Helvetica Neue", Arial, sans-serif;
+  --font-tobias: "Tobias", "Times New Roman", Georgia, serif;
+  --font-serif-italic: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+
+  /* ── Typography: scale ────────────────────────────── */
+  --text-size-50: 12px;
+  --text-size-100: 16px;
+  --text-size-200: 20px;
+  --text-lineheight-100: 16px;
+  --text-lineheight-125: 20px;
+  --text-lineheight-175: 28px;
+  --text-weight-regular: 400;
+  --text-weight-medium: 500;
+  --text-weight-bold: 700;
+
+  /* Slide styles (Figma letter-spacing −4% → −0.04em) */
+  --type-subheadline-1: 400 72px/1.1 var(--font-tobias);   /* "Subheadline 1" */
+  --type-subheadline-2: 700 32px/1.4 var(--font-basis);    /* "Subheadline 2" */
+  --type-body-slide: 400 32px/1.4 var(--font-basis);       /* "Body" */
+  --type-caption-1: 400 24px/1.4 var(--font-basis);        /* "Caption 1" */
+  --tracking-slide: -0.04em;
+
+  /* Product styles */
+  --type-body-sm: var(--text-weight-regular) var(--text-size-50) / var(--text-lineheight-100) var(--font-basis);
+  --type-body-xl: var(--text-weight-regular) var(--text-size-200) / var(--text-lineheight-175) var(--font-basis);
+  --type-label-lg: var(--text-weight-bold) var(--text-size-100) / var(--text-lineheight-125) var(--font-basis);
+  --type-number-bold-lg: var(--text-weight-medium) var(--text-size-100) / 1 var(--font-basis);
+  --type-number-bold-xl: var(--text-weight-medium) var(--text-size-200) / 1 var(--font-basis);
+
+  /* ── Space ────────────────────────────────────────── */
+  --space-100: 8px;
+  --space-200: 16px;
+  --space-400: 32px;
+
+  /* ── Shape ────────────────────────────────────────── */
+  --shape-radius-100: 4px;
+  --radius-card: 8px;
+  --radius-wallet: 12px;
+
+  /* ── Elevation ────────────────────────────────────── */
+  --shadow-sm: 0 1px 3px 0 rgba(120, 113, 89, 0.18);
+  --shadow-md:
+    0 8px 12px -1px rgba(120, 113, 89, 0.14),
+    0 1px 6px -1px rgba(120, 113, 89, 0.2),
+    0 14px 20px 0 rgba(120, 113, 89, 0.14);
+  --shadow-lg:
+    0 30px 40px -3px rgba(120, 113, 89, 0.25),
+    0 8px 30px -3px rgba(120, 113, 89, 0.18),
+    0 4px 12px 0 rgba(120, 113, 89, 0.25);
+  --shadow-wallet: 0 2px 6px 0 rgba(0, 0, 0, 0.15), 0 4px 20px 0 rgba(0, 0, 0, 0.25);
 }

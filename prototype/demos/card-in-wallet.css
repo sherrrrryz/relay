@@ -1,0 +1,55 @@
+/* Card in wallet — the card is tucked between the wallet's back and its front pocket */
+.stage {
+  min-height: 720px;
+  box-sizing: border-box;
+  padding: 160px 16px 48px; /* headroom for the card's arc out of the pocket */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 112px;
+  border-radius: var(--radius-wallet);
+  background: var(--color-sand-200);
+}
+.stage__hint { margin: 0; font: var(--type-body-xl); color: var(--color-text-subtle); }
+
+.ciw { position: relative; outline: none; cursor: pointer; }
+.ciw:focus-visible { outline: 2px solid var(--color-forest); outline-offset: 12px; border-radius: var(--radius-wallet); }
+.ciw .wallet { will-change: transform; }
+.ciw .wallet__top { z-index: 2; }
+
+.ciw__card {
+  position: absolute;
+  left: 10px;
+  top: 22px;
+  will-change: transform;
+}
+
+/* Frost creeps in from the edges: --clear is the radius of the still-clear centre (100% = no frost) */
+.ciw__frost {
+  --clear: 100%;
+  opacity: 0;
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, transparent var(--clear), #000 calc(var(--clear) + 35%));
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, transparent var(--clear), #000 calc(var(--clear) + 35%));
+}
+
+/* Broken pieces: each layer mirrors the card's position; the shadow lives on the layer so it follows the clipped shape */
+.ciw__piece {
+  position: absolute;
+  left: 10px;
+  top: 22px;
+  width: 360px;
+  height: 227px;
+  filter: drop-shadow(rgba(37, 32, 31, 0.3) 0px 26px 22px);
+  will-change: transform;
+}
+.ciw__piece .card { filter: none; }
+.ciw__piece--fx { filter: drop-shadow(rgba(37, 32, 31, 0.35) 0px 2px 3px); pointer-events: none; }
+.ciw__shard {
+  position: absolute;
+  width: 16px;
+  height: 20px;
+  margin: -10px 0 0 -8px;
+  background: linear-gradient(160deg, #fff, rgba(214, 236, 245, 0.85));
+  clip-path: polygon(50% 0%, 100% 70%, 30% 100%, 0% 40%);
+}

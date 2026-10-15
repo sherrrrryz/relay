@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="371.517" height="248.345" viewBox="0 0 371.517 248.345" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="StitchLight" filter="url(#filter0_f_0_10)">
+<path d="M1 238.345V10C1 5.02944 5.02944 1 10 1H361.517C366.488 1 370.517 5.02945 370.517 10V238.345C370.517 243.315 366.488 247.345 361.517 247.345H10C5.02944 247.345 1 243.315 1 238.345Z" stroke="white" stroke-opacity="0.2" stroke-dasharray="4 3"/>
+</g>
+<defs>
+<filter id="filter0_f_0_10" x="0" y="0" width="371.517" height="248.345" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="0.25" result="effect1_foregroundBlur_0_10"/>
+</filter>
+</defs>
+</svg>
