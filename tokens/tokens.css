@@ -1,0 +1,13 @@
+/* Design tokens — placeholders until pulled from the Figma file */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-primary: #3b5bdb;
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --radius: 8px;
+}
