@@ -67,7 +67,7 @@
     renderer.toneMapping = THREE.NoToneMapping;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 200);
+    const camera = new THREE.PerspectiveCamera(28, 1, 5, 120); // tight near/far keeps depth precision high (no z-fighting)
     const LOOK_AT = new THREE.Vector3(0, 3.4, 0);
 
     scene.add(new THREE.AmbientLight(0xffffff, 1.15));
@@ -176,10 +176,10 @@
     const cardFront = new THREE.Mesh(cGeo, cardMat(cropCard(frontImg, 9, 6, 1080, 681)));
     const cardBack = new THREE.Mesh(cGeo, cardMat(cropCard(backImg, 60, 18, 1080, 681)));
     cardBack.rotation.y = Math.PI;
-    cardFront.position.z = 0.012;
-    cardBack.position.z = -0.012;
+    cardFront.position.z = 0.03;
+    cardBack.position.z = -0.03;
     // a thin dark edge so the flip reads as a solid object
-    const edge = new THREE.Mesh(new THREE.BoxGeometry(CARD.w - 0.06, CARD.h - 0.06, 0.02), new THREE.MeshStandardMaterial({ color: 0x9fae72, roughness: 0.9 }));
+    const edge = new THREE.Mesh(new THREE.BoxGeometry(CARD.w - 0.06, CARD.h - 0.06, 0.03), new THREE.MeshStandardMaterial({ color: 0x9fae72, roughness: 0.9 }));
     edge.renderOrder = cardFront.renderOrder = cardBack.renderOrder = 2;
     cardGroup.add(edge, cardFront, cardBack);
     scene.add(cardGroup);
