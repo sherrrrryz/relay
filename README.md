@@ -38,6 +38,23 @@ Pulled from the Figma file "Relay <> FoF Activity Kit (Copy) (Copy)", page **01 
 
 Time: 30 minutes. The goal isn't perfection. Experiment with prompting, iterate, and see how quickly you can go from idea to working interaction.
 
+## Wallet motion study
+
+A small three.js scene built from the Relay business-debit assets: a black leather wallet and the card.
+Tap the wallet and the card tumbles in the air, lands flat above the pocket opening and slides in.
+Tap again to take it back out.
+
+- `index.html` — the whole scene (three.js loaded from cdnjs, no build step)
+- `assets/card-front.png`, `assets/card-back.png`, `assets/wallet.svg` — wallet SVG and card renders
+
+Run locally with any static server, for example:
+
+```bash
+python3 -m http.server 8090
+```
+
+then open http://localhost:8090.
+
 ## Other folders
 
 `research/`, `explorations/`, `specs/` hold notes, sketches and handoff specs.
