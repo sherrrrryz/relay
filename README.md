@@ -7,8 +7,8 @@ Relay <> Friends of Figma activity kit: take a static Relay card and turn it int
 CSS masks don't load over `file://`, so serve the repo instead of opening the HTML directly:
 
 ```sh
-python3 -m http.server 8000
-# → http://localhost:8000/prototype/
+npm run demo   # serves the repo and opens the Card in wallet tab
+# or: python3 -m http.server 8000 → http://localhost:8000/prototype/
 ```
 
 The prototype has four tabs: **Gallery**, **Card in wallet** (GSAP), **Card drop (3D)** (three.js) and **Manula**.

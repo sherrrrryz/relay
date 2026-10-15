@@ -53,3 +53,13 @@
   background: linear-gradient(160deg, #fff, rgba(214, 236, 245, 0.85));
   clip-path: polygon(50% 0%, 100% 70%, 30% 100%, 0% 40%);
 }
+
+/* Back face lives inside the same card; flipping swaps which face is visible at the 90° point */
+.ciw__back {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  filter: none;
+  visibility: hidden;
+}
+.ciw__card.is-back .ciw__back { visibility: visible; }
