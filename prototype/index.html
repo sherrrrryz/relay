@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="../components/wallet.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="demos/card-in-wallet.css">
+  <link rel="stylesheet" href="demos/card-drop.css">
+  <script type="importmap">
+    { "imports": { "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.module.min.js" } }
+  </script>
 </head>
 <body>
   <header class="masthead">
@@ -19,6 +23,8 @@
   <nav class="tabs" role="tablist" aria-label="Prototype views">
     <button class="tabs__tab" role="tab" id="tab-gallery" aria-controls="panel-gallery" data-tab="gallery">Gallery</button>
     <button class="tabs__tab" role="tab" id="tab-card-in-wallet" aria-controls="panel-card-in-wallet" data-tab="card-in-wallet">Card in wallet</button>
+    <button class="tabs__tab" role="tab" id="tab-card-drop" aria-controls="panel-card-drop" data-tab="card-drop">Card drop (3D)</button>
+    <button class="tabs__tab" role="tab" id="tab-manuela" aria-controls="panel-manuela" data-tab="manuela">Manuela's portfolio</button>
   </nav>
 
   <main class="tabs__panel" role="tabpanel" id="panel-card-in-wallet" aria-labelledby="tab-card-in-wallet" hidden>
@@ -39,6 +45,26 @@
         </div>
       </div>
       <p class="stage__hint" aria-live="polite">Hover to peek · click to take the card out</p>
+    </div>
+  </main>
+
+  <main class="tabs__panel" role="tabpanel" id="panel-card-drop" aria-labelledby="tab-card-drop" hidden>
+    <div class="card-drop" id="card-drop" tabindex="0" role="application" aria-label="Relay card floating above a black wallet. Tap the wallet to drop the card in; press Space to toggle.">
+      <!-- the WebGL canvas is created by demos/card-drop.js -->
+      <div class="card-drop__ui">
+        <p class="card-drop__hint" id="card-drop-hint" aria-live="polite">Tap the wallet to drop the card in</p>
+        <p class="card-drop__status" id="card-drop-status">Card is out</p>
+      </div>
+      <div class="card-drop__loading" id="card-drop-loading">Loading</div>
+    </div>
+  </main>
+
+  <main class="tabs__panel" role="tabpanel" id="panel-manuela" aria-labelledby="tab-manuela" hidden>
+    <div class="embed">
+      <!-- Manuela's portfolio animation: a standalone Vite + three.js app (source in experiments/manuela-portfolio,
+           built into prototype/manuela). It owns its own window, so it runs in a frame; src is set when the tab opens. -->
+      <iframe class="embed__frame" id="manuela-frame" data-src="manuela/index.html" title="Manuela's portfolio animation" loading="lazy" allow="fullscreen"></iframe>
+      <p class="embed__hint">Click the scene to launch the card · press <kbd>h</kbd> inside it for the tuning panel · <a href="manuela/" target="_blank" rel="noopener">open full screen</a></p>
     </div>
   </main>
 
@@ -139,6 +165,34 @@
     for (const colour of RelayWallet.COLOURS) {
       wallets.appendChild(RelayWallet.create(colour, { assetBase: "../assets/figma/wallet" }));
     }
+  </script>
+  <script type="module">
+    // Card drop (3D): mounted the first time its tab is shown; rendering pauses while the tab is hidden.
+    import { mountCardDrop } from "./demos/card-drop.js";
+    const panel = document.getElementById("panel-card-drop");
+    const stage = document.getElementById("card-drop");
+    let demo = null, mounting = null;
+    async function sync() {
+      if (panel.hidden) { demo?.setActive(false); return; }
+      if (!demo && !mounting) {
+        mounting = mountCardDrop(stage, {
+          assetBase: "../assets",
+          hint: document.getElementById("card-drop-hint"),
+          status: document.getElementById("card-drop-status"),
+        }).then((d) => { demo = d; document.getElementById("card-drop-loading").classList.add("is-done"); });
+        await mounting;
+      }
+      demo?.setActive(!panel.hidden);
+    }
+    new MutationObserver(sync).observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+    sync();
+
+    // Manuela's portfolio: load the frame the first time its tab is shown.
+    const mPanel = document.getElementById("panel-manuela");
+    const mFrame = document.getElementById("manuela-frame");
+    const loadFrame = () => { if (!mPanel.hidden && !mFrame.src) mFrame.src = mFrame.dataset.src; };
+    new MutationObserver(loadFrame).observe(mPanel, { attributes: true, attributeFilter: ["hidden"] });
+    loadFrame();
   </script>
 </body>
 </html>

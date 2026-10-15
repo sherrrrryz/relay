@@ -51,3 +51,18 @@ h2 {
 .tabs__tab:hover { color: var(--color-forest); }
 .tabs__tab[aria-selected="true"] { color: var(--color-forest); border-bottom-color: var(--color-forest); font-weight: var(--text-weight-bold); }
 .tabs__tab:focus-visible { outline: 2px solid var(--color-forest); outline-offset: 2px; }
+
+/* Embedded standalone apps (own window, own render loop) */
+.embed { display: flex; flex-direction: column; gap: var(--space-200); }
+.embed__frame {
+  width: 100%;
+  min-height: 720px;
+  height: calc(100vh - 300px);
+  border: 0;
+  border-radius: var(--radius-wallet);
+  background: #24221f;
+  display: block;
+}
+.embed__hint { margin: 0; font: var(--type-body-xl); color: var(--color-text-subtle); }
+.embed__hint kbd { font: inherit; padding: 0 6px; border: 1px solid var(--color-sand-300); border-radius: 4px; }
+.embed__hint a { color: inherit; }
